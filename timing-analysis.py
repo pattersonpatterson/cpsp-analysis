@@ -67,3 +67,4 @@ if __name__ == "__main__":
     new_data = make_lol('./data2.csv')
     make_plots(old_data,'blue',0.25)
     make_plots(new_data,'purple',-0.25)
+    plt.show()
