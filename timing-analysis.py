@@ -6,14 +6,51 @@ Created on Wed Nov 19 13:06:43 2014
 """
 
 # Imports
-import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import csv
 
-# Take data from excel spreadsheet and put into DataFrame (declared globally)
+# Take data from csv file and put into list of lists
+# Format: msg#, msg name, start time, end time
+def make_lol(filename):
+    '''Take a csv filename and return a list of lists from the data'''
+    lol = []
+    with open(filename) as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            lol.append(row)
+    return lol
+        
 
 
-# Separate DataFrames into two: one for each release
+def make_plots(data,color,offset):
+    '''Takes data in the form of list of lists
+    Format: msg#, msg name, start time, end time
+    Also takes a color corresponding to the data to set the data apart
+    Also takes numerical offset, moving the data up or down'''
+    i=0
+    labels = []
+    for num,name,start,end in data:
+        print name,start,end
+        if start<end:
+            print name
+            x = np.arange(int(start),int(end)+1)
+            y = [i+offset]*len(x)
+        else:
+            x = np.arange(0,int(end)+1)
+            x1 = np.arange(int(start),1001)
+            y = [i+offset]*len(x)
+            y1 = [i+offset]*len(x1)
+        i+=1
+        plt.plot(x,y,color=color,linewidth=4)
+        try:
+            plt.plot(x1,y1,color=color,linewidth=4)
+        except NameError:
+            pass
+        labels.append(str(name))
+    plt.yticks(range(len(labels)),labels)
+    
+
 
 
 # Check that the start time is less than the end time
@@ -25,35 +62,8 @@ import numpy as np
 # x-label should be milliseconds
 # Plot all on same graph with lines, set line-width=10
 
-
-'''Possible outline:
-for row in dataframe:
-    if start_time < end time:
-        x = np.arange(start_time,end_time+1)
-        y = [row]*len(x)
-    else:
-        x = np.arange(0,start_time+1)
-        x1 = np.arange(end_time,1001)
-        y = [row]*len(x)
-        y1 = [row]*len(x1)
-    
-    if release == old:
-        offset = -0.5
-        color = purple
-    else:
-        offset = 0.5
-        color = blue
-        
-    y = [num+offset for num in y] # possibly send to function
-
-    plt.plot(x and y,color=color,linewidth=10)
-    if(x1 exists):
-        y1 = [num+offset for num in y1]
-        plt.plot(x1 and y1,color=color,linewidth=10)
-        # delete the x1/y1 variables at the end to clean up
-        del x1,y1
-
-        
-# after all rows have been processed, fix the labels and show
-Set the labels to the msg type
-plt.show()'''
+if __name__ == "__main__":
+    old_data = make_lol('./data1.csv')
+    new_data = make_lol('./data2.csv')
+    make_plots(old_data,'blue',0.25)
+    make_plots(new_data,'purple',-0.25)
