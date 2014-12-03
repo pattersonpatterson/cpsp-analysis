@@ -42,12 +42,12 @@ def make_plots(data,color,offset):
             y = [i+offset]*len(x)
             y1 = [i+offset]*len(x1)
         i+=1
-        plt.plot(x,y,color=color,linewidth=4)
+        plt.plot(x,y,color=color,linewidth=7)
         try:
-            plt.plot(x1,y1,color=color,linewidth=4)
+            plt.plot(x1,y1,color=color,linewidth=7)
         except NameError:
             pass
-        labels.append(str(name))
+        labels.append(str(num)+" "+str(name))
     plt.yticks(range(len(labels)),labels)
     
 
@@ -65,6 +65,8 @@ def make_plots(data,color,offset):
 if __name__ == "__main__":
     old_data = make_lol('./data1.csv')
     new_data = make_lol('./data2.csv')
-    make_plots(old_data,'blue',0.25)
-    make_plots(new_data,'purple',-0.25)
+    make_plots(old_data,'blue',0.20)
+    make_plots(new_data,'purple',-0.20)
+    plt.grid(True)
+    plt.gca().invert_yaxis()
     plt.show()
