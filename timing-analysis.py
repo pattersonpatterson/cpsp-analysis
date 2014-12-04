@@ -16,9 +16,9 @@ import argparse
 parser = argparse.ArgumentParser(description='CP/SP Timing Analysis Plotter')
 parser.add_argument('-D', '--debug', action='store_true',
                     help='Enable verbose debug output to console')
-parser.add_argument('-f1', '--file1', action='store_true', default='./data1.csv',
+parser.add_argument('-f1', '--file1', action='store', default='./data1.csv',
                     help='First CSV file for analysis.')
-parser.add_argument('-f2', '--file2', action='store_true', default='./data2.csv',
+parser.add_argument('-f2', '--file2', action='store', default='./data2.csv',
                     help='Second CSV file for analysis.')
 args = parser.parse_args()
 
