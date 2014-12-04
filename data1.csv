@@ -1,29 +1,29 @@
-16/01,Fast Correction,787,886
-16/02,GEO Nav,793,827
-16/03,IGP Delay,850,91
-16/07,LTC,791,886
-16/12,Ext Mode Msg,201,239
-16/13,GEO Broadcast,720,770
-16/14,GEO Measurements,721,781
-16/15,GPS Measurements,731,808
-16/16,GUS Cntl Loop Lock,104,157
-16/18,L1/L2 Bias,271,862
-16/19,Message Output Msg,242,284
-16/23,Sel CV Cntl Src,702,785
-16/26,WRE PA Msg,721,770
-16/27,Sub Frame Data,953,241
-16/28,Thread Switch Msg,953,241
-16/36,Subframe 1 CRC,827,712
-16/37,Subframe 2 CRC,826,707
-16/38,Subframe 3 CRC,833,717
-16/41,RG3D Msg,954,641
-16/42,RG3E Msg,822,553
-02/03,SP Perf Data,821,854
-02/08,LRU Data,941,975
-02/13,MSG Mode,699,737
-19/15,GEO Test MSG,92,130
-19/17,Current WAAS Mode,92,130
-21/22,Clock Bias Delta,927,985
-23/05,MSG Val Status,721,771
-26/06,WAAS User Msg,241,281
-26/37,GIVE Report,419,503
+16/01,Fast Correction,789,867
+16/02,GEO Nav,793,810
+16/03,IGP Delay,851,40
+16/07,LTC,791,815
+16/12,Ext Mode Msg,205,335
+16/13,GEO Broadcast,720,787
+16/14,GEO Measurements,721,797
+16/15,GPS Measurements,731,825
+16/16,GUS Cntl Loop Lock,97,216
+16/18,L1/L2 Bias,272,612
+16/19,Message Output Msg,242,307
+16/23,Sel CV Cntl Src,695,805
+16/26,WRE PA Msg,720,787
+16/27,Sub Frame Data,897,65
+16/28,Thread Switch Msg,0,0
+16/36,Subframe 1 CRC,820,791
+16/37,Subframe 2 CRC,817,763
+16/38,Subframe 3 CRC,820,764
+16/41,RG3D Msg,820,763
+16/42,RG3E Msg,821,720
+02/03,SP Perf Data,560,639
+02/08,LRU Data,940,953
+02/13,MSG Mode,698,761
+19/15,GEO Test MSG,40,51
+19/17,Current WAAS Mode,40,51
+21/22,Clock Bias Delta,934,7
+23/05,MSG Val Status,721,787
+26/06,WAAS User Msg,240,281
+26/37,GIVE Report,431,490

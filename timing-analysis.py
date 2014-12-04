@@ -7,6 +7,7 @@ Created on Wed Nov 19 13:06:43 2014
 
 # Imports
 import matplotlib.pyplot as plt
+import matplotlib.patches as mp
 import numpy as np
 import csv
 
@@ -33,11 +34,15 @@ def make_plots(data,color,offset):
     # Use i for the y-values    
     i=0
     labels = []
+    
     for num,name,start,end in data:
         start,end = int(start),int(end) # typecast data as int
         
         # Check whether the start time is less than end time; handle accordingly
-        if start<end:
+        if start==end: # if start is the same as end, increment row and skip loop
+            i+=2
+            continue
+        elif start<end:
             x = np.arange(start,end+1)
             y = [i+offset]*len(x)
         else:
@@ -45,7 +50,7 @@ def make_plots(data,color,offset):
             x1 = np.arange(start,1001)
             y = [i+offset]*len(x)
             y1 = [i+offset]*len(x1)
-        i+=1
+        i+=2
         plt.plot(x,y,color=color,linewidth=7)
         try:
             plt.plot(x1,y1,color=color,linewidth=7)
@@ -54,6 +59,7 @@ def make_plots(data,color,offset):
         
         # Create Label
         labels.append(str(num)+" "+str(name))
+        labels.append(" ")
     plt.yticks(range(len(labels)),labels)
     
 
@@ -61,8 +67,12 @@ def make_plots(data,color,offset):
 if __name__ == "__main__":
     old_data = make_lol('./data1.csv')
     new_data = make_lol('./data2.csv')
-    make_plots(old_data,'blue',0.20)
-    make_plots(new_data,'purple',-0.20)
+    make_plots(old_data,'purple',0.25)
+    make_plots(new_data,'blue',-0.25)
+    
+    old_legend = mp.Patch(color='purple', label='R3B') # Change label for data
+    new_legend = mp.Patch(color='blue', label='R4')
+    plt.legend(handles=[new_legend, old_legend], loc='upper center')
     plt.grid(True)
     plt.gca().invert_yaxis()
     plt.show()
