@@ -10,6 +10,17 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mp
 import numpy as np
 import csv
+import argparse
+
+# Argument parser. The parser of arguments.
+parser = argparse.ArgumentParser(description='CP/SP Timing Analysis Plotter')
+parser.add_argument('-D', '--debug', action='store_true',
+                    help='Enable verbose debug output to console')
+parser.add_argument('-f1', '--file1', action='store', default='./data1.csv',
+                    help='First CSV file for analysis.')
+parser.add_argument('-f2', '--file2', action='store', default='./data2.csv',
+                    help='Second CSV file for analysis.')
+args = parser.parse_args()
 
 # Take data from csv file and put into list of lists
 # Format: msg#, msg name, start time, end time
@@ -65,8 +76,8 @@ def make_plots(data,color,offset):
 
 
 if __name__ == "__main__":
-    old_data = make_lol('./data1.csv')
-    new_data = make_lol('./data2.csv')
+    old_data = make_lol(args.file1)
+    new_data = make_lol(args.file2)
     make_plots(old_data,'purple',0.25)
     make_plots(new_data,'blue',-0.25)
     
