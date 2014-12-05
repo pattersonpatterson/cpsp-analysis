@@ -1,0 +1,29 @@
+16/01,Fast Correction,793,881
+16/02,GEO Nav,799,820
+16/03,IGP Delay,885,119
+16/07,LTC,798,876
+16/12,Ext Mode Msg,190,252
+16/13,GEO Broadcast,722,790
+16/14,GEO Measurements,723,801
+16/15,GPS Measurements,733,828
+16/16,GUS Cntl Loop Lock,92,157
+16/18,L1/L2 Bias,270,883
+16/19,Message Output Msg,261,298
+16/23,Sel CV Cntl Src,695,798
+16/26,WRE PA Msg,723,791
+16/27,Sub Frame Data,932,89
+16/28,Thread Switch Msg,0,0
+16/36,Subframe 1 CRC,827,684
+16/37,Subframe 2 CRC,826,715
+16/38,Subframe 3 CRC,827,693
+16/41,RG3D Msg,934,615
+16/42,RG3E Msg,706,457
+02/03,SP Perf Data,511,632
+02/08,LRU Data,945,960
+02/13,MSG Mode,701,764
+19/15,GEO Test MSG,96,142
+19/17,Current WAAS Mode,96,141
+21/22,Clock Bias Delta,938,33
+23/05,MSG Val Status,723,791
+26/06,WAAS User Msg,245,258
+26/37,GIVE Report,455,529

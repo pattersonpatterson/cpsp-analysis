@@ -12,21 +12,28 @@ import numpy as np
 import csv
 import argparse
 
-# Argument parser. The parser of arguments.
-parser = argparse.ArgumentParser(description='CP/SP Timing Analysis Plotter')
-parser.add_argument('-D', '--debug', action='store_true',
-                    help='Enable verbose debug output to console')
-parser.add_argument('-f1', '--file1', action='store', default='./data1.csv',
-                    help='First CSV file for analysis.')
-parser.add_argument('-f2', '--file2', action='store', default='./data2.csv',
-                    help='Second CSV file for analysis.')
-args = parser.parse_args()
+# Define parser globally
+parser = argparse.ArgumentParser(description='''CP/SP Timing Analysis Plotter -
+    Run this script from the same folder as the data csv's, filenames will be used for legend''')
+
+def get_args():
+    '''# Argument parser. The parser of arguments.'''
+    
+    parser.add_argument('-D', '--debug', action='store_true',
+                        help='Enable verbose debug output to console')
+    parser.add_argument('-f1', '--old_data', action='store',
+                        help='The csv file for the legacy build\'s timing data.')
+    parser.add_argument('-f2', '--new_data', action='store',
+                        help='The csv file for the new build\'s timing data.')
+    return parser.parse_args()
+        
 
 # Take data from csv file and put into list of lists
 # Format: msg#, msg name, start time, end time
 def make_lol(filename):
     '''Take a csv filename and return a list of lists from the data
     (Requires import csv)'''
+    
     lol = []
     with open(filename) as csvfile:
         reader = csv.reader(csvfile)
@@ -70,20 +77,36 @@ def make_plots(data,color,offset):
         
         # Create Label
         labels.append(str(num)+" "+str(name))
-        labels.append(" ")
+        labels.append(" ") # add blanks between each label to space out data
     plt.yticks(range(len(labels)),labels)
     
-
-
-if __name__ == "__main__":
-    old_data = make_lol(args.file1)
-    new_data = make_lol(args.file2)
-    make_plots(old_data,'purple',0.25)
-    make_plots(new_data,'blue',-0.25)
+def show_plots():
+    '''Creates legend and shows plot (specifically tuned for this graph)'''
     
-    old_legend = mp.Patch(color='purple', label='R3B') # Change label for data
-    new_legend = mp.Patch(color='blue', label='R4')
+    # Create legend patches using args and slicing off the .csv from the filename
+    old_legend = mp.Patch(color='purple', label=args.old_data[:-4]) 
+    new_legend = mp.Patch(color='blue', label=args.new_data[:-4])
+    
+    # Place legend (may need to be changed in later releases) and show plots
     plt.legend(handles=[new_legend, old_legend], loc='upper center')
     plt.grid(True)
     plt.gca().invert_yaxis()
     plt.show()
+    
+
+
+if __name__ == "__main__":
+    args = get_args()
+    
+    # Try to call the args and if the first one fails, print the help and exit
+    try:
+        old_data = make_lol(args.old_data)
+    except:
+        print # Buffer line
+        parser.print_help()
+        exit()
+    new_data = make_lol(args.new_data)
+    make_plots(old_data,'purple',0.25)
+    make_plots(new_data,'blue',-0.25)
+    show_plots()
+    
