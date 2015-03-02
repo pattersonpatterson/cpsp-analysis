@@ -57,13 +57,12 @@ def make_plots(data,color,offset):
         start,end = int(start),int(end) # typecast data as int
         
         # Check whether the start time is less than end time; handle accordingly
-        if start==end: # if start is the same as end, increment row and skip loop
-            i+=2
-            continue
-        elif start<end:
+        # if start is the same as end, no x values or y values need to be set
+
+        if start<end:
             x = np.arange(start,end+1)
             y = [i+offset]*len(x)
-        else:
+        elif start>end:
             x = np.arange(0,end+1)
             x1 = np.arange(start,1001)
             y = [i+offset]*len(x)
