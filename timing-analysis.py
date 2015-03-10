@@ -78,6 +78,7 @@ def make_plots(data,color,offset):
         labels.append(str(num)+" "+str(name))
         labels.append(" ") # add blanks between each label to space out data
     plt.yticks(range(len(labels)),labels)
+    plt.xticks(np.arange(0,1001,100))
     
 def show_plots():
     '''Creates legend and shows plot (specifically tuned for this graph)'''
